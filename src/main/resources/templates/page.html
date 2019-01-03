@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/sockjs-client/1.0.2/sockjs.min.js}"></script>
+<script th:src="@{/webjars/stomp-websocket/2.3.3/stomp.min.js}"></script>
+<script th:src="@{base/js/{pageId}(pageId=${page.id})}"></script>
+<script th:src="@{base/contentByPage/js/{pageId}(pageId=${page.id})}"></script>
+</head>
+<body>
+	<div class="container-fluid" th:id="${page.id}">
+		<th:block th:each="component, status : ${page.components}">
+			<div
+				th:replace="__${component.name + '::component'}__ (component=${component}, page=${page})"></div>
+		</th:block>
+	</div>
+</body>
+</html>
