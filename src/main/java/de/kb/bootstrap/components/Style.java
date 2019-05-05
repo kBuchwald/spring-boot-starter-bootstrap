@@ -13,7 +13,9 @@ public enum Style {
 	//Headlines
 	H1("h1"),H2("h2"),H3("h3"),H4("h4"),H5("h5"),H6("h6"),DISPLAY_H1("display-1"),DISPLAY_H2("display-2"),DISPLAY_H3("display-3"),DISPLAY_H4("display-4"),
 	//Navbar
-	NAVBAR_BRAND("navbar-brand"), NAVBAR("navbar"), NAVBAR_LIGHT("navbar-light"),NAVBAR_EXPAND_LG("navbar-expand-lg"),NAVBAR_EXPAND_MR("navbar-expand-mr"),NAVBAR_NAVITEM("nav-item"),
+	NAVBAR_BRAND("navbar-brand"), NAVBAR("navbar"), NAVBAR_LIGHT("navbar-light"),NAVBAR_EXPAND_LG("navbar-expand-lg"),NAVBAR_EXPAND_MR("navbar-expand-mr"),NAVBAR_NAVITEM("nav-item"),NAVBAR_NAVLIN("nav-link"),
+	//DropDown
+	DROPDOWN("dropdown"),DROPDOWN_MENU("dropdown-menu"),DROPDOWN_ITEM("dropdown-item"),DROPDOWN_DIVIDER("dropdown-divider"),DROPDOWN_TOGGLE("dropdown-toggle"),
 	//Background
 	BG_LIGHT("bg-light");
 	private final String cssClass;

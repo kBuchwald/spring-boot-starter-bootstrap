@@ -21,6 +21,7 @@ import de.kb.bootstrap.components.content.Content;
 public class Navbar extends AbstractBootstrapComponent<Navbar> implements Content{
 	
 	private List<NavItem> navItems = new ArrayList<>();
+	private Brand brand;
 	
 	@PostConstruct
 	public void init() {
@@ -50,5 +51,13 @@ public class Navbar extends AbstractBootstrapComponent<Navbar> implements Conten
 	public Navbar addNavItems(int index, NavItem navItems) {
 		this.navItems.add(index, navItems);
 		return this;
+	}
+
+	public Brand getBrand() {
+		return this.brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
 	}
 }

@@ -1,4 +1,4 @@
-package de.kb.bootstrap.reesourcces;
+package de.kb.bootstrap.resourcces;
 
 public interface ImageRessourceService {
 	

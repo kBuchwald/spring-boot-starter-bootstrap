@@ -28,7 +28,7 @@ import de.kb.bootstrap.components.websocket_messages.Image;
 import de.kb.bootstrap.components.websocket_messages.ImageHeight;
 import de.kb.bootstrap.components.websocket_messages.ImageWidth;
 import de.kb.bootstrap.components.websocket_messages.Text;
-import de.kb.bootstrap.reesourcces.ImageRessource;
+import de.kb.bootstrap.resourcces.ImageRessource;
 
 public class Brand extends AbstractBootstrapComponentWithSubComponents<Brand> {
 	private NavigateTo navigateTo;
