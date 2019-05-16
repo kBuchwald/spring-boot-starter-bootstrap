@@ -49,12 +49,6 @@
 					</form>
 				</div>
 			</nav>
-			<div th:class="${component.cssClass}" th:id="${component.id}">
-				<th:block th:each="subcomponent, status : ${component.components}">
-					<div
-						th:replace="__${subcomponent.name + '::component'}__ (component=${subcomponent}, page=${page})"></div>
-				</th:block>
-			</div>
 		</th:block>
 	</div>
 </body>

@@ -16,6 +16,8 @@ import de.kb.bootstrap.components.content.TextContent;
 import de.kb.bootstrap.components.content.TextualContent.Type;
 import de.kb.bootstrap.components.headlines.Headline;
 import de.kb.bootstrap.components.hr.Hr;
+import de.kb.bootstrap.components.navigation.Navbar;
+import de.kb.bootstrap.components.navigation.NavbarMenuItem;
 
 @Controller
 @RequestMapping(value = "/")
@@ -36,7 +38,8 @@ public class MainController {
 		button1.addClickListener(() -> button3.setStyle(Style.BUTTON_OUTLINE_DARK));
 		button1.addClickListener(() -> button3.setText("ganz anderer Text"));
 		button3.addClickListener(() -> button6.remove());
-		Page page = applicationContext.getBean(Page.class).add(button1).add(button2).add(button3).add(button4).add(button5).add(button6);
+		Navbar navbar = new Navbar().addNavItems(new NavbarMenuItem());
+		Page page = applicationContext.getBean(Page.class).add(navbar).add(button1).add(button2).add(button3).add(button4).add(button5).add(button6);
 		button4.addClickListener(() -> {
 			Button button = applicationContext.getBean(Button.class).setMsgKey("test.added");
 			button.addClickListener(() -> button.remove());

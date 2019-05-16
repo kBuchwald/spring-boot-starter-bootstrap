@@ -1,0 +1,2 @@
+[# th:fragment="component"]
+[/]	
