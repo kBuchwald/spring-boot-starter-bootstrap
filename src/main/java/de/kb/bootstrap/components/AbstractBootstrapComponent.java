@@ -62,12 +62,14 @@ public abstract class AbstractBootstrapComponent<T extends BootstrapComponent> i
 	}
 	
 	public String getPageId() {
+		if(this.parent == null)
+			return null;
 		return this.parent.getPageId();
 	}
 	
-	public Page getPage() {
-		Optional<Page> optional = pageCache.get(getPageId());
-		return optional.orElseThrow(()->new IllegalStateException("No Page with Id <" +getPageId()+"> registered All BootStrapComponents need a Page as Root-Component!"));
+	public Optional<Page> getPage() {
+		return pageCache.get(getPageId());
+//		return optional.orElseThrow(()->new IllegalStateException("No Page with Id <" +getPageId()+"> registered All BootStrapComponents need a Page as Root-Component!"));
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -31,22 +31,21 @@ public class MainController {
 		Button button2 = applicationContext.getBean(Button.class).setText("TestText");
 		Button button3 = applicationContext.getBean(Button.class).setMsgKey("test.remove");
 		Button button4 = applicationContext.getBean(Button.class).setMsgKey("test.add");
-		Button button5 = applicationContext.getBean(Button.class).setMsgKey("test");
-		Button button6 = applicationContext.getBean(Button.class).setMsgKey("test");
 		button1.addClickListener(() -> button2.switchDisabledState());
 		button2.addClickListener(() -> button1.switchDisabledState());
 		button1.addClickListener(() -> button3.setStyle(Style.BUTTON_OUTLINE_DARK));
 		button1.addClickListener(() -> button3.setText("ganz anderer Text"));
-		button3.addClickListener(() -> button6.remove());
 		Navbar navbar = new Navbar().addNavItems(new NavbarMenuItem());
-		Page page = applicationContext.getBean(Page.class).add(navbar).add(button1).add(button2).add(button3).add(button4).add(button5).add(button6);
+		Page page = applicationContext.getBean(Page.class).add(navbar).add(button1).add(button2).add(button3).add(button4);
 		button4.addClickListener(() -> {
 			Button button = applicationContext.getBean(Button.class).setMsgKey("test.added");
 			button.addClickListener(() -> button.remove());
 			page.add(button);
 		});
 		Alert alert = applicationContext.getBean(Alert.class).setDismissable(true);
-		page.add(alert);
+		Button shoMessageButton = applicationContext.getBean(Button.class).setText("Show Message");
+		shoMessageButton.addClickListener(() -> page.add(alert));
+		page.add(shoMessageButton);
 		Headline headline = applicationContext.getBean(Headline.class).setStyle(Style.H3);
 		alert.add(headline);
 		headline.add(applicationContext.getBean(MessageKeyContent.class).setMsgKey("alert.headline").setType(Type.PLAIN));

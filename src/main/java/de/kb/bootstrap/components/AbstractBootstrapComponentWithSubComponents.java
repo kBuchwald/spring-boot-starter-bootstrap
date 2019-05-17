@@ -2,6 +2,7 @@ package de.kb.bootstrap.components;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -20,7 +21,7 @@ public abstract class AbstractBootstrapComponentWithSubComponents<T extends Boot
 	public void setComponents(List<BootstrapComponent> components) {
 		this.components = components;
 		components.forEach(component -> component.setParent(this));
-		components.forEach(component -> getPage().subComponetAdded(component));
+		components.forEach(component -> getPage().ifPresent(page -> page.subComponetAdded(component)));
 		components.forEach(component -> component.addRemover(() -> components.remove(component)));
 		if (isRendered())
 			this.webSocket.convertAndSend("/topic/content/set", new SetContent(getId()));
@@ -28,7 +29,7 @@ public abstract class AbstractBootstrapComponentWithSubComponents<T extends Boot
 
 	private void addOneComponent(BootstrapComponent component) {
 		component.setParent(this);
-		getPage().subComponetAdded(component);
+		getPage().ifPresent(page -> page.subComponetAdded(component));
 		component.addRemover(() -> components.remove(component));
 	}
 
@@ -59,10 +60,16 @@ public abstract class AbstractBootstrapComponentWithSubComponents<T extends Boot
 	}
 
 	public void remove(String componentId) {
-		BootstrapComponent component = getPage().getComponentsById().get(componentId);
-		component.remove();
-		if (isRendered())
-			this.webSocket.convertAndSend("/topic/content/remove", new Remove(component.getId()));
+		Optional<Page> page = getPage();
+		if(page.isPresent()) {
+			BootstrapComponent component = page.get().getComponentsById().get(componentId);
+			component.remove();
+			if (isRendered())
+				this.webSocket.convertAndSend("/topic/content/remove", new Remove(component.getId()));
+		}
+		else {
+			allSubComponents(this).stream().filter(component -> component.getId().equals(componentId)).findFirst().ifPresent(BootstrapComponent::remove);
+		}
 	}
 
 	public static List<BootstrapComponent> allSubComponents(BootstrapComponent component) {
